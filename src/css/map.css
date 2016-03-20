@@ -1,0 +1,25 @@
+.map-body { margin-left: auto; margin-right: auto; }
+
+/* Navigation */
+.circle {
+	border: 2px solid #ECE232;
+	border-radius: 50%;
+	width: 16px;
+	height: 16px;
+  display: inline-block;
+  margin-right: 8px;
+  -webkit-box-shadow: 0 0 1px 0px rgb( 255, 255, 255);
+	box-shadow: 0 0 1px 0px rgb( 255, 255, 255);
+  /*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+	filter: alpha(opacity=60);*/
+	/*opacity: 0.6;*/
+	-webkit-transition: background-color .5s ease-in-out;
+	-moz-transition: background-color .5s ease-in-out;
+	-o-transition: background-color .5s ease-in-out;
+	-ms-transition: background-color .5s ease-in-out;
+	transition: background-color .5s ease-in-out;
+}
+
+.circle.filled {
+	background-color: #ECE232;
+}
