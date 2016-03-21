@@ -43,11 +43,10 @@ var InteractiveMap = React.createClass({
       </div>
     );
   },
-  img_root: "/img/",
   maps: {
     spills: {
       title: "Incidents of Contamination",
-      bg: "./assets/maps/spills_map.png",
+      bg: "./src/maps/spills_map.png",
       captions: [
         [
           'Charleston Plant, 1964.',
@@ -71,11 +70,44 @@ var InteractiveMap = React.createClass({
         ]
       ],
       overlays: [
-        ["./assets/maps/pointer.png","379px","107px"],
-        ["./assets/maps/pointer.png","114px","49px"],
-        ["./assets/maps/pointer.png","177px","8px"],
-        ["./assets/maps/pointer.png","399px","333px"],
-        ["./assets/maps/pointer.png","377px","82px"]
+        ["./src/maps/pointer.png","379px","107px"],
+        ["./src/maps/pointer.png","114px","49px"],
+        ["./src/maps/pointer.png","177px","8px"],
+        ["./src/maps/pointer.png","399px","333px"],
+        ["./src/maps/pointer.png","377px","82px"]
+      ]
+    },
+    exposure: {
+      title: "Accounts of Unequal Exposure during the Jan. 9th, 2014 MCMH Spill",
+      bg: "./src/maps/exposure_map.png",
+      captions: [
+        [
+          'Looking closer at the impact area',
+          'Some populations in the impact area were affected more severely than others. Click through to learn more.',
+        ],
+        [
+          'The Elderly',
+          'It took a full day before the news of the spill was put out through all the new systems. Elderly people unable to pick up lots of water potentially lacked consistent access to clean water, particulalry in rural areas.'
+        ],
+        [
+          'West Charleston',
+          '"You just see how income impacts emergency response... people who couldn’t drive to pick up water from the distribution at the fire stations couldn’t get water. they probably went on using contaminated water. Folks on the West Side walk. And not walking like those folks in Kanawha City do for excercise." - Reverend Watts'
+        ],
+        [
+          'Coalfields Communities',
+          'As a rural, coalfield county with a lower income than the other areas impacted, people not only had to travel farther to get water, there were fewerer private water distribution site, even supermarkets are scarce in parts of this county.'
+        ],
+        [
+          'Prisoners',
+          '"They forced us to use the water, only gave us 8 ounces of clean water to drink at first. I’m stilll stick." - A Prisoner, South Central Regional Jail'
+        ]
+      ],
+      overlays: [
+        ["./src/maps/exposure_hi-impact.png","0","0"],
+        ["./src/maps/exposure_elderly.png","0","0"],
+        ["./src/maps/exposure_w_charleston.png","0","0"],
+        ["./src/maps/exposure_coalfields.png","0","0"],
+        ["./src/maps/exposure_jail.png","0","0"]
       ]
     }
   }
@@ -119,7 +151,11 @@ var MapBody = React.createClass({
 
 ReactDOM.render(
   <InteractiveMap map_id='spills'/>,
-  document.getElementById('map1')
+  document.getElementById('spillsMap')
+);
+ReactDOM.render(
+  <InteractiveMap map_id='exposure'/>,
+  document.getElementById('exposureMap')
 );
 
 // jquery
