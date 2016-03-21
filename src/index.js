@@ -22,14 +22,16 @@ var InteractiveMap = React.createClass({
   },
   render: function () {
     var captionOptions = [],
-        captions = this.state.map.captions,
-        _that = this;
-    for (var i = 0; i < captions.length; i++){
-      // if i = position add "disabled" / "selected" class
-      captionOptions.push(
-        <a className="circle" key={i} onClick={this.changePosition.bind(null, i)}></a>
-      );
+        captions = this.state.map.captions;
+    if(captions.length){
+      for (var i = 0; i < captions.length; i++){
+        // if i = position add "disabled" / "selected" class
+        captionOptions.push(
+          <a className="circle" key={i} onClick={this.changePosition.bind(null, i)}></a>
+        );
+      }
     }
+
     return (
       <div className="row paper-bg">
         <div className="col-md-4 center">
@@ -44,9 +46,36 @@ var InteractiveMap = React.createClass({
     );
   },
   maps: {
+    expansion: {
+      title: 'A History of WV American Water',
+      bg: './src/maps/expansion_base.png',
+      overlays: [
+        ['./src/maps/expansion_2015.png','0','0'],
+        ['./src/maps/expansion_69-78.png','0','0'],
+        ['./src/maps/expansion_79-89.png','0','0'],
+        ['./src/maps/expansion_90-99.png','0','0'],
+        ['./src/maps/expansion_00-09.png','0','0'],
+        ['./src/maps/expansion_holdouts.png','0','0']
+      ],
+      captions: [
+        [ 'The Present', 'Approximate area served by WV American Water in 2015'],
+        [ '1969 - 1978', '' ],
+        [ '1979 - 1989', '' ],
+        [ '1990 - 1999', '' ],
+        [ '2000 - 2009', '' ],
+        [ 'The Holdouts', 'Some districts have chosen to remain independent, despite economic pressures to join the larger WVAW congolmeration.']
+      ]
+    },
     spills: {
-      title: "Incidents of Contamination",
-      bg: "./src/maps/spills_map.png",
+      title: 'Incidents of Contamination',
+      bg: './src/maps/spills_map.png',
+      overlays: [
+        ["./src/maps/pointer.png","379px","107px"],
+        ["./src/maps/pointer.png","114px","49px"],
+        ["./src/maps/pointer.png","177px","8px"],
+        ["./src/maps/pointer.png","399px","333px"],
+        ["./src/maps/pointer.png","377px","82px"]
+      ],
       captions: [
         [
           'Charleston Plant, 1964.',
@@ -68,18 +97,18 @@ var InteractiveMap = React.createClass({
           "Elk River, 2014",
           "Before the January 9th, 2014 spill from Freedom Industries, the former owner, Penzoil, also had a spill. The Freedom Industries spill poisoned the water in 9 counties, near 100,000 people.."
         ]
-      ],
-      overlays: [
-        ["./src/maps/pointer.png","379px","107px"],
-        ["./src/maps/pointer.png","114px","49px"],
-        ["./src/maps/pointer.png","177px","8px"],
-        ["./src/maps/pointer.png","399px","333px"],
-        ["./src/maps/pointer.png","377px","82px"]
       ]
     },
     exposure: {
       title: "Accounts of Unequal Exposure during the Jan. 9th, 2014 MCMH Spill",
-      bg: "./src/maps/exposure_map.png",
+      bg: "./src/maps/exposure_base.png",
+      overlays: [
+        ["./src/maps/exposure_hi-impact.png","0","0"],
+        ["./src/maps/exposure_elderly.png","0","0"],
+        ["./src/maps/exposure_w_charleston.png","0","0"],
+        ["./src/maps/exposure_coalfields.png","0","0"],
+        ["./src/maps/exposure_jail.png","0","0"]
+      ],
       captions: [
         [
           'Looking closer at the impact area',
@@ -101,13 +130,6 @@ var InteractiveMap = React.createClass({
           'Prisoners',
           '"They forced us to use the water, only gave us 8 ounces of clean water to drink at first. I’m stilll stick." - A Prisoner, South Central Regional Jail'
         ]
-      ],
-      overlays: [
-        ["./src/maps/exposure_hi-impact.png","0","0"],
-        ["./src/maps/exposure_elderly.png","0","0"],
-        ["./src/maps/exposure_w_charleston.png","0","0"],
-        ["./src/maps/exposure_coalfields.png","0","0"],
-        ["./src/maps/exposure_jail.png","0","0"]
       ]
     }
   }
@@ -148,7 +170,10 @@ var MapBody = React.createClass({
 });
 
 
-
+ReactDOM.render(
+  <InteractiveMap map_id='expansion'/>,
+  document.getElementById('expansionMap')
+);
 ReactDOM.render(
   <InteractiveMap map_id='spills'/>,
   document.getElementById('spillsMap')
@@ -160,6 +185,6 @@ ReactDOM.render(
 
 // jquery
 $('.circle').on('click', function(){
-  $('.circle').removeClass('filled');
+  $(this).siblings().removeClass('filled');
   $(this).addClass('filled');
 });
