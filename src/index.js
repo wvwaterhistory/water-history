@@ -1,10 +1,10 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import $ from 'jquery';
-require("bootstrap-webpack");
 require("./css/basic.css");
 require("./css/article.css");
 require("./css/map.css");
+import $ from 'jquery';
+require("bootstrap-webpack");
+var React = require('react');
+var ReactDOM = require('react-dom');
 var mapData = require("./json/map_data.json");
 
 var InteractiveMap = React.createClass({
@@ -12,7 +12,8 @@ var InteractiveMap = React.createClass({
     var map = this.maps[this.props.map_id];
     return {
       position: 0,
-      map: map
+      map: map,
+      navigation: []
     }
   },
   changePosition: function (i) {
@@ -20,35 +21,63 @@ var InteractiveMap = React.createClass({
       position: i
     });
   },
-  render: function () {
-    var captionOptions = [],
-        captions = this.state.map.captions;
-    if(captions.length){
-      for (var i = 0; i < captions.length; i++){
-        // if i = position add "disabled" / "selected" class
-        captionOptions.push(
-          <a className="circle" key={i} onClick={this.changePosition.bind(null, i)}></a>
-        );
-      }
+  incrementPosition: function (map_id) {
+    var pos = this.state.position + 1;
+    if (pos < this.state.map.captions.length) {
+      $('#' + map_id + 'Map .map-nav a:nth-child(' + (pos + 2) +')').click();
+      this.setState({
+        position: pos
+      });
     }
-
+  },
+  decrementPosition: function (map_id) {
+    var pos = this.state.position;
+    if (pos > 0) {
+      console.log('- -');
+      $('#' + map_id + 'Map .map-nav a:nth-child(' + (pos + 1)+ ')').click();
+      this.setState({
+        position: pos - 1
+      });
+    }
+  },
+  render: function () {
     return (
       <div className="row paper-bg">
+        <div className="col-xs-12 center">
+          <h2 className="map-title">{this.state.map.title}</h2>
+        </div>
+        <div className="col-md-8 map-body">
+          <MapBody bg={this.state.map.bg} bgHeight={this.state.map.bgHeight} overlay={this.state.map.overlays[this.state.position]} position={this.state.position} />
+        </div>
         <div className="col-md-4 center">
-          <h4>{this.state.map.title}</h4>
-          {captionOptions} <br />
-          <MapCaptions position={this.state.position} captions={this.state.map.captions} newPosition={this.changePosition} />
+          <div className="spacer2 hidden-sm hidden-xs"></div>
+          <MapCaptions position={this.state.position} captions={this.state.map.captions} navigation={this.state.navigation} newPosition={this.changePosition} />
         </div>
-        <div className="col-md-8">
-          <MapBody bg={this.state.map.bg} overlay={this.state.map.overlays[this.state.position]} position={this.state.position} />
-        </div>
+
       </div>
     );
+  },
+  componentDidMount: function () {
+    var navigation = [],
+        captions = this.state.map.captions;
+    if(captions.length > 1){
+      navigation.push( <a onClick={this.decrementPosition.bind(null, this.props.map_id)} key={this.props.map_id + "-decr"}><img src="./src/bg/arrow_decr.svg"/></a> );
+      for (var i = 0; i < captions.length; i++){
+        navigation.push(
+          <a className={i === 0 ? "circle filled" : "circle"} key={i} onClick={this.changePosition.bind(null, i)}></a>
+        );
+      }
+      navigation.push( <a onClick={this.incrementPosition.bind(null, this.props.map_id)} key={this.props.map_id + "-incr"}><img src="./src/bg/arrow_incr.svg"/></a> );
+      this.setState({
+        navigation: [<div className="map-nav">{navigation}</div>]
+      });
+    }
   },
   maps: {
     expansion: {
       title: 'A History of WV American Water',
       bg: './src/maps/expansion_base.png',
+      bgHeight: 500,
       overlays: [
         ['./src/maps/expansion_2015.png','0','0'],
         ['./src/maps/expansion_69-78.png','0','0'],
@@ -69,6 +98,7 @@ var InteractiveMap = React.createClass({
     spills: {
       title: 'Incidents of Contamination',
       bg: './src/maps/spills_map.png',
+      bgHeight: 500,
       overlays: [
         ["./src/maps/pointer.png","379px","107px"],
         ["./src/maps/pointer.png","114px","49px"],
@@ -102,6 +132,7 @@ var InteractiveMap = React.createClass({
     exposure: {
       title: "Accounts of Unequal Exposure during the Jan. 9th, 2014 MCMH Spill",
       bg: "./src/maps/exposure_base.png",
+      bgHeight: 450,
       overlays: [
         ["./src/maps/exposure_hi-impact.png","0","0"],
         ["./src/maps/exposure_elderly.png","0","0"],
@@ -143,7 +174,8 @@ var MapCaptions = React.createClass({
   render: function () {
     return (
       <div className="map-captions">
-        <h5>{this.props.captions[this.props.position][0]}</h5>
+        <h3 className="map-title">{this.props.captions[this.props.position][0]}</h3>
+        {this.props.navigation}
         <p>{this.props.captions[this.props.position][1]}</p>
       </div>
     );
@@ -153,8 +185,8 @@ var MapBody = React.createClass({
   render: function () {
     var mapStyle = {
       width: '735px',
-      height: '500px',
-      background: 'url(' + this.props.bg + ')'
+      height: this.props.bgHeight + 'px',
+      background: 'url(' + this.props.bg + ') no-repeat'
     };
     var overlayStyle = {
       position: 'relative',
@@ -169,19 +201,13 @@ var MapBody = React.createClass({
   }
 });
 
+$(['expansion', 'spills', 'exposure']).each(function (i, key) {
+  ReactDOM.render(
+    <InteractiveMap map_id={key}/>,
+    document.getElementById(key + 'Map')
+  );
+})
 
-ReactDOM.render(
-  <InteractiveMap map_id='expansion'/>,
-  document.getElementById('expansionMap')
-);
-ReactDOM.render(
-  <InteractiveMap map_id='spills'/>,
-  document.getElementById('spillsMap')
-);
-ReactDOM.render(
-  <InteractiveMap map_id='exposure'/>,
-  document.getElementById('exposureMap')
-);
 
 // jquery
 $('.circle').on('click', function(){

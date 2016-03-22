@@ -1,17 +1,20 @@
-.map-body { margin-left: auto; margin-right: auto; }
+.map-body { margin-left: auto; margin-right: auto; overflow-x: hidden;}
 /* Navigation */
+.map-nav { border-bottom: 2px solid #333; display: inline-block; height:9px; margin: 10px auto 25px auto; }
+.map-nav img { vertical-align:top;}
+.map-nav a:first-child { margin-left:-5px; margin-right:10px;}
+.map-nav a:last-child { margin-left:10px; margin-right:-3px;}
+.map-captions { padding:10px; border-top:2px solid #333; border-bottom:2px solid #333; margin: 20px 0; }
 .circle {
-	border: 2px solid #ECE232;
+	border: 2px solid #333;
+	background-color: #B5D0EB ;
 	border-radius: 50%;
 	width: 16px;
 	height: 16px;
   display: inline-block;
-  margin-right: 8px;
+  margin: 0 8px;
   -webkit-box-shadow: 0 0 1px 0px rgb( 255, 255, 255);
 	box-shadow: 0 0 1px 0px rgb( 255, 255, 255);
-  /*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-	filter: alpha(opacity=60);*/
-	/*opacity: 0.6;*/
 	-webkit-transition: background-color .5s ease-in-out;
 	-moz-transition: background-color .5s ease-in-out;
 	-o-transition: background-color .5s ease-in-out;
@@ -19,6 +22,6 @@
 	transition: background-color .5s ease-in-out;
 }
 
-.circle.filled {
-	background-color: #ECE232;
+.circle.filled, .circle:hover {
+	background-color: #333;
 }
