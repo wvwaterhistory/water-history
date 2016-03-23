@@ -8,7 +8,7 @@ import React from 'react';
 var MediaLink = React.createClass({
   render: function() {
     var divStyle = {
-      backgroundImage: 'url(./src/img/' + this.props.icon + ')'
+      backgroundImage: 'url(./src/img/' + this.props.icon + '_circle.png)'
     };
     return (
     <div className="center">
