@@ -21,25 +21,6 @@ var InteractiveMap = React.createClass({
       position: i
     });
   },
-  incrementPosition: function (map_id) {
-    var pos = this.state.position + 1;
-    if (pos < this.state.map.captions.length) {
-      $('#' + map_id + 'Map .map-nav a:nth-child(' + (pos + 2) +')').click();
-      this.setState({
-        position: pos
-      });
-    }
-  },
-  decrementPosition: function (map_id) {
-    var pos = this.state.position;
-    if (pos > 0) {
-      console.log('- -');
-      $('#' + map_id + 'Map .map-nav a:nth-child(' + (pos + 1)+ ')').click();
-      this.setState({
-        position: pos - 1
-      });
-    }
-  },
   render: function () {
     return (
       <div className="row paper-bg">
@@ -59,18 +40,26 @@ var InteractiveMap = React.createClass({
   },
   componentDidMount: function () {
     var navigation = [],
-        captions = this.state.map.captions;
-    if(captions.length > 1){
-      navigation.push( <a onClick={this.decrementPosition.bind(null, this.props.map_id)} key={this.props.map_id + "-decr"}><img src="./src/bg/arrow_decr.svg"/></a> );
-      for (var i = 0; i < captions.length; i++){
+        captionsLength = this.state.map.captions.length;
+    if(captionsLength > 1){
+      navigation.push( <a onClick={this.incrementPosition.bind(null, this.props.map_id, -1)} key={captionsLength + 1}><img src="./src/bg/arrow_decr.svg"/></a> );
+      for (var i = 0; i < captionsLength; i++){
         navigation.push(
           <a className={i === 0 ? "circle filled" : "circle"} key={i} onClick={this.changePosition.bind(null, i)}></a>
         );
       }
-      navigation.push( <a onClick={this.incrementPosition.bind(null, this.props.map_id)} key={this.props.map_id + "-incr"}><img src="./src/bg/arrow_incr.svg"/></a> );
+      navigation.push( <a onClick={this.incrementPosition.bind(null, this.props.map_id, 1)} key={captionsLength + 2}><img src="./src/bg/arrow_incr.svg"/></a> );
       this.setState({
         navigation: [<div className="map-nav">{navigation}</div>]
       });
+    }
+  },
+  incrementPosition: function (map_id, n) {
+    var newPosition = this.state.position + n,
+        activeLink = newPosition + 2;
+    if (n > 0 && newPosition < this.state.map.captions.length || n < 0 && newPosition >= 0) {
+      $('#' + map_id + 'Map .map-nav a.circle:nth-child(' + activeLink +')').click();
+      this.changePosition(newPosition);
     }
   },
   maps: {
