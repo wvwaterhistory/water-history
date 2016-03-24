@@ -2,6 +2,43 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import $ from 'jquery';
 
+var MapBody = React.createClass({
+  render: function () {
+    var mapStyle = {
+      width: '735px',
+      height: this.props.bgHeight + 'px',
+      background: 'url(' + this.props.bg + ') no-repeat'
+    };
+    var overlayStyle = {
+      position: 'relative',
+      left: this.props.overlay[1],
+      top: this.props.overlay[2]
+    }
+    return (
+      <div style={mapStyle} className="map-body">
+        <img src={this.props.overlay[0]} style={overlayStyle} />
+      </div>
+    );
+  }
+});
+
+var MapCaptions = React.createClass({
+  getInitialState: function () {
+    return {
+      newPosition: ''
+    }
+  },
+  render: function () {
+    return (
+      <div className="col-xs-12 col-sm-10 col-sm-offset-1">
+        <h3 className="map-title">{this.props.captions[this.props.position][0]}</h3>
+        {this.props.navigation}
+        <p><em>{this.props.captions[this.props.position][1]}</em></p>
+      </div>
+    );
+  }
+});
+
 var InteractiveMap = React.createClass({
   getInitialState: function () {
     var map = this.maps[this.props.map_id];
@@ -18,18 +55,17 @@ var InteractiveMap = React.createClass({
   },
   render: function () {
     return (
-      <div className="row paper-bg">
-        <div className="col-xs-12 center">
-          <h2 className="map-title">{this.state.map.title}</h2>
+      <div className="row paper-bg" id={this.props.map_id + "Map"}>
+        <h2 className="map-title center">{this.state.map.title}</h2>
+        <div className="col-md-4 center map-captions">
+          <div className="spacer2 hidden-sm hidden-xs"></div>
+          <hr className="hidden-xs hidden-sm col-md-12" />
+            <MapCaptions position={this.state.position} captions={this.state.map.captions} navigation={this.state.navigation} newPosition={this.changePosition} />
+          <hr className="hidden-xs hidden-sm col-md-12" />
         </div>
-        <div className="col-md-8 map-body">
+        <div className="col-md-8">
           <MapBody bg={this.state.map.bg} bgHeight={this.state.map.bgHeight} overlay={this.state.map.overlays[this.state.position]} position={this.state.position} />
         </div>
-        <div className="col-md-4 center">
-          <div className="spacer2 hidden-sm hidden-xs"></div>
-          <MapCaptions position={this.state.position} captions={this.state.map.captions} navigation={this.state.navigation} newPosition={this.changePosition} />
-        </div>
-
       </div>
     );
   },
@@ -63,19 +99,19 @@ var InteractiveMap = React.createClass({
       bg: './src/maps/expansion_base.png',
       bgHeight: 500,
       overlays: [
-        ['./src/maps/expansion_2015.png','0','0'],
         ['./src/maps/expansion_69-78.png','0','0'],
         ['./src/maps/expansion_79-89.png','0','0'],
         ['./src/maps/expansion_90-99.png','0','0'],
         ['./src/maps/expansion_00-09.png','0','0'],
+        ['./src/maps/expansion_2015.png','0','0'],
         ['./src/maps/expansion_holdouts.png','0','0']
       ],
       captions: [
-        [ 'The Present', 'Approximate area served by WV American Water in 2015'],
         [ '1969 - 1978', '' ],
         [ '1979 - 1989', '' ],
         [ '1990 - 1999', '' ],
         [ '2000 - 2009', '' ],
+        [ 'The Present', 'Approximate area served by WV American Water in 2015'],
         [ 'The Holdouts', 'Some districts have chosen to remain independent, despite economic pressures to join the larger WVAW congolmeration.']
       ]
     },
@@ -149,48 +185,5 @@ var InteractiveMap = React.createClass({
     }
   }
 });
-var MapCaptions = React.createClass({
-  getInitialState: function () {
-    return {
-      newPosition: ''
-    }
-  },
-  render: function () {
-    return (
-      <div className="map-captions">
-        <h3 className="map-title">{this.props.captions[this.props.position][0]}</h3>
-        {this.props.navigation}
-        <p>{this.props.captions[this.props.position][1]}</p>
-      </div>
-    );
-  }
-});
-var MapBody = React.createClass({
-  render: function () {
-    var mapStyle = {
-      width: '735px',
-      height: this.props.bgHeight + 'px',
-      background: 'url(' + this.props.bg + ') no-repeat'
-    };
-    var overlayStyle = {
-      position: 'relative',
-      left: this.props.overlay[1],
-      top: this.props.overlay[2]
-    }
-    return (
-      <div className="map-body" style={mapStyle}>
-        <img src={this.props.overlay[0]} style={overlayStyle} />
-      </div>
-    );
-  }
-});
 
-// ReactDOM.render(
-//   <InteractiveMap map_id='spills'/>,
-//   document.getElementById('map1')
-// );
-
-$('.circle').on('click', function(){
-  $(this).siblings().removeClass('filled');
-  $(this).addClass('filled');
-});
+export default InteractiveMap;

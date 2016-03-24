@@ -1,10 +1,11 @@
 .map-body { margin-left: auto; margin-right: auto; overflow-x: hidden;}
-/* Navigation */
 .map-nav { border-bottom: 2px solid #333; display: inline-block; height:9px; margin: 10px auto 25px auto; }
 .map-nav img { vertical-align:top;}
 .map-nav a:first-child { margin-left:-5px; margin-right:10px;}
 .map-nav a:last-child { margin-left:10px; margin-right:-3px;}
-.map-captions { padding:10px; border-top:2px solid #333; border-bottom:2px solid #333; margin: 20px 0; }
+.map-captions { overflow-x: hidden; }
+.map-captions hr { border-top: 2px solid #333; }
+.map-captions .map-title { margin-top: 0;}
 .circle {
 	border: 2px solid #333;
 	background-color: #B5D0EB ;
@@ -21,7 +22,6 @@
 	-ms-transition: background-color .5s ease-in-out;
 	transition: background-color .5s ease-in-out;
 }
-
 .circle.filled, .circle:hover {
 	background-color: #333;
 }

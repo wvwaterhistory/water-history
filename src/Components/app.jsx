@@ -1,5 +1,6 @@
 import React from 'react';
 import ViewMaster from './viewer.jsx';
+import InteractiveMap from './map.js';
 import Cover from './cover.jsx';
 import EarlyYearsSection from './earlyyears.jsx';
 import ExpansionSection from './expansion.jsx';
@@ -52,8 +53,11 @@ var App = React.createClass({
         <ViewMaster title={this.state.mediaTitle} content={this.state.mediaContent} visible={this.state.mediaViewer} closeMedia={this.closeMedia} />
         <Cover />
         <EarlyYearsSection showMedia={this.showMedia}/>
+        <InteractiveMap map_id="expansion"/>
         <ExpansionSection showMedia={this.showMedia}/>
+        <InteractiveMap map_id="spills"/>
         <SpillsSection showMedia={this.showMedia}/>
+        <InteractiveMap map_id="exposure"/>
         <EqualitySection showMedia={this.showMedia}/>
         <FutureSection showMedia={this.showMedia}/>
         <Footer />

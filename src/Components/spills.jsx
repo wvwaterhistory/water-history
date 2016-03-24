@@ -5,7 +5,6 @@ var SpillsSection = React.createClass({
   render: function () {
     return (
       <div className="container-fluid" id="spills">
-        <section id="spillsMap" className="paper-bg"></section>
         <div className="row transition-image spills-bg center">
             <h1>Spills</h1>
         </div>

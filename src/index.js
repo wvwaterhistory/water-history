@@ -10,3 +10,8 @@ var ReactDOM = require('react-dom');
 import App from './Components/app.jsx';
 
 ReactDOM.render(<App />, document.getElementById('myApp'));
+
+$('.circle').on('click', function(){
+  $(this).siblings().removeClass('filled');
+  $(this).addClass('filled');
+});
