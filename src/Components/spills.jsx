@@ -21,18 +21,18 @@ var SpillsSection = React.createClass({
               <div className="col-sm-4">
                 <h5 className="subheading">Water Service in the Coalfields</h5>
                 <p>Rural, coal producing areas such as Boone County, WV, have lived with coal-waste-contaminated well water and small public water systems that sometimes were not much better. West Virginia American Water seemed like a god-send for places like Prenter, WV. Some feel less sure these days.</p>
-                <MediaLink mediaId="4" mediaTitle="A Life of Poisoned Water" icon="DJ" onClick={this.props.showMedia} />
-                <MediaLink mediaId="5" mediaTitle="Fighting for Clean Water in Prenter, WV" icon="lambert" onClick={this.props.showMedia} />
+                <MediaLink onClick={this.props.showMedia.bind(null, "audio", 3)} mediaTitle="A Life of Poisoned Water" icon="DJ" />
+                <MediaLink onClick={this.props.showMedia.bind(null, "audio", 4)} mediaTitle="Fighting for Clean Water in Prenter, WV" icon="lambert" />
               </div>
               <div className="col-sm-4">
                 <h5 className="subheading">Charleston, WV: Chemical Valley</h5>
                 <p>With such a history of chemical spills in the Charleston area, West Virginia American Water has always known about the risks to their drinking water source. In the 1970s they closed their intakes on the Kanawha River after investigations of serious water quality contamination. At their Elk River facility, they formerly had upstream contaminant monitoring equipment. The German water conglomerate (RWE) owned American Water for a short period in the 2000s. They appear to have removed their gas chromatographs - technology that would have detected the January 9th, 2014 chemical spill.</p>
-                <MediaLink mediaId="6" mediaTitle="Chemical Valley Girl" icon="good" onClick={this.props.showMedia} />
+                <MediaLink onClick={this.props.showMedia.bind(null, "video", 0)} mediaTitle="Chemical Valley Girl" icon="good" />
               </div>
               <div className="col-sm-4">
                 <h5 className="subheading">The Report</h5>
                 <p>A report identified 27 potentially significant contaminant sources just upstream of the intake. By the time of the 2014 spill, WV American Water had investigated only three of these sources.</p>
-                <MediaLink mediaId="3" mediaTitle="An Expected Spill" icon="stottlemyer" onClick={this.props.showMedia} />
+                <MediaLink onClick={this.props.showMedia.bind(null, "audio", 2)} mediaTitle="An Expected Spill" icon="stottlemyer" />
               </div>
             </div>
             <div className="row">

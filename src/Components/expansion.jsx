@@ -16,7 +16,7 @@ var ExpansionSection = React.createClass({
               <div className="col-sm-4">
                 <h5 className="subheading">Expansion along the Elk River</h5>
                 <p>In 1976 WVWC finished an expensive and large water treatment plant on the Elk River, replacing the three plants they had servicing the Charleston area from the Kanawha River. Hoping in part to serve industrial customers, rates were too high to attract large-scale private buyers. That meant they needed more retail residential customers.</p>
-                <MediaLink mediaId="2" mediaTitle="Fred Stottlemyer's Story" icon="stottlemyer" onClick={this.props.showMedia} />
+                <MediaLink onClick={this.props.showMedia.bind(null, "audio", 1)} mediaTitle="Fred Stottlemyer's Story" icon="stottlemyer" />
               </div>
               <div className="col-sm-4">
                 <h5 className="subheading">The New WV American Water</h5>
@@ -24,7 +24,7 @@ var ExpansionSection = React.createClass({
               </div>
               <div className="col-sm-4">
                 <blockquote className="bq0">
-                  <p>“...it is simply more efficient and more economical, the more customers you can serve, from one large production facility.”</p>
+                  <h4>“...it is simply more efficient and more economical, the more customers you can serve, from one large production facility.”</h4>
                   <footer>Chris Jarrett, President of WV American Water Company</footer>
                 </blockquote>
                 <div className="row center top-space">

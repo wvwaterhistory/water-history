@@ -21,16 +21,16 @@ var EqualitySection = React.createClass({
                   <footer>Reverend Watts, Grace Bible Church, West Charleston, WV</footer>
                 </blockquote>
                 <div className="spacer"></div>
-                <MediaLink mediaId="8" mediaTitle="Being Poor During A Crisis" icon="watts" onClick={this.props.showMedia} />
+                <MediaLink onClick={this.props.showMedia.bind(null, "audio", 6)} mediaTitle="Being Poor During A Crisis" icon="watts" />
               </div>
               <div className="col-sm-4">
                 <h5 className="subheading">Race and Class</h5>
                 <blockquote className="bq0">
-                  <p>“I think it’s important when you break down who it affected, and how it affected them, that race and class are a part of this dialog. This crisis affected the majority of the African American community in the entire state – yes, the majority of black folks in WV were affected by this. Then if you look at it in another conversation, this is the second time that West Virginia American Water has displaced African Americana. When they built their treatment plant - that was the thriving African-American neighborhood."</p>
-                  <p>It’s back to this caste system [I was talking about] – who is disposable and who is not? It affected everybody, right, but which communities did it affect to a greater degree?”</p>
+                  <p>“I think it’s important when you break down who it affected, and how it affected them, that race and class are a part of this dialog. This crisis affected the majority of the African American community in the entire state – yes, the majority of black folks in WV were affected by this. Then if you look at it in another conversation, this is the second time that West Virginia American Water has displaced African Americans. When they built their treatment plant - that was the thriving African-American neighborhood.”</p>
+                  <p>“It’s back to this caste system [I was talking about] – who is disposable and who is not? It affected everybody, right, but which communities did it affect to a greater degree?”</p>
                   <footer>Crystal Good, Poet, Charleston, WV</footer>
                 </blockquote>
-                <MediaLink mediaId="7" mediaTitle="Race and Class Matter" icon="good" onClick={this.props.showMedia} />
+                <MediaLink onClick={this.props.showMedia.bind(null, "audio", 5)} mediaTitle="Race and Class Matter" icon="good" />
               </div>
               <div className="col-sm-4">
                 <h5 className="subheading">Rural Communities</h5>
@@ -38,11 +38,11 @@ var EqualitySection = React.createClass({
                   <p>"We had just started to relax, just gotten used to the idea that maybe it was ok to drink this [West Virginia American] water. And maybe the chlorine was ok, and the fluoride, and the other stuff they put in it. But it’s better than what we had, or we thought it was. And when that [spill] happened, a friend calls me, and she’s like: “We’ll just do what we done before – we’ll take short quick showers, and buy bottled water to drink with, and to cook with.” She said, “We’ve been through this, we already know what to do. The people in Charleston’s the ones that’s gonna have a hard time. We’ve already learned to cope with it.” So we did.</p>
                   <footer>Maria Lambert, Prenter, WV</footer>
                 </blockquote>
-                <MediaLink mediaId="9" mediaTitle="Bad Well Water, Bad City Water" icon="DJ" onClick={this.props.showMedia} />
+                <MediaLink onClick={this.props.showMedia.bind(null, "audio", 7)} mediaTitle="Bad Well Water, Bad City Water" icon="DJ" />
               </div>
             </div>
             <div className="col-sm-4 top-space">
-              <MediaLink mediaId="0" mediaTitle="The Water Crisis in Jail" icon="letter" onClick={this.props.showMedia} />
+              <MediaLink onClick={this.props.showMedia.bind(null, "document", 0)} mediaTitle="The Water Crisis in Jail" icon="letter" />
             </div>
             <div className="col-sm-8">
               <blockquote className="bq-header top-space">

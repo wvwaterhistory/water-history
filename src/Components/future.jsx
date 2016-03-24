@@ -19,7 +19,7 @@ var FutureSection = React.createClass({
             <p>That’s not to say that public ownership itself is the solution. We have seen so many small, underfunded and unsustainable water systems service terrible water to West Virginians for years, ultimately selling out to WVAW. However, large public water systems are sustainable, across the country and here in West Virginia. The Putnam PSD and the Morgantown Utility Board are both good examples. They have responded drastically to the chemical spill on the Elk River, learning from the crisis and exceeding the requirements of SB 373 (the Above Ground Chemical Storage Tank legislation), while WVAW has consistently maintained they did nothing wrong.</p>
             <p>But to get a public water system in Charleston, WV, we’ll have to fight for it.</p>
             <div className="row center">
-              <MediaLink mediaId="10" mediaTitle="When Will You Feel Safe Again?" icon="rain" onClick={this.props.showMedia} />
+              <MediaLink onClick={this.props.showMedia.bind(null, "audio", 8)} mediaTitle="When Will You Feel Safe Again?" icon="rain" />
             </div>
             <h4 className="center">Visions for Change</h4>
             <blockquote className="bq1">

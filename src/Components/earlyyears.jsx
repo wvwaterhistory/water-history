@@ -22,7 +22,7 @@ var EarlyYearsSection = React.createClass({
                 <h5 className="subheading">Coal Camps and Conglomeration</h5>
                 <p>Historically, utility services were all very localized. In southern West Virginia, coal companies provided utilities such as electricity, but water was often a personal issue – that meant people used wells and streams. When telephone companies came, they set up telephone interchanges but they weren’t interconnected together. It was only through the 1930s, 40s, &amp; 50s that there was a movement towards consolidation in utilities.</p>
                 <p>A larger electric company, for example, would gobble up localized services, shut down the old local generators, and connect them with transmission lines to larger more central power plants, usually on large rivers because of access to coal by barge.</p>
-                <MediaLink mediaId="1" onClick={this.props.showMedia} icon="stottlemyer" mediaTitle="Fred Stottlemyer's Story"/>
+                <MediaLink onClick={this.props.showMedia.bind(null, "audio", 0)} icon="stottlemyer" mediaTitle="Fred Stottlemyer's Story"/>
               </div>
               <div className="col-sm-4">
                 <h5 className="subheading">FDR and a Mandate for Universal Coverage</h5>
