@@ -17,7 +17,7 @@ module.exports = {
             { test: /\.css$/, loader: "style-loader!css-loader" },
             { test: /\.less/, loaders: ['style', 'css', 'less'] },
             { test: /\.html/, loader: 'html' },
-            { test: /\.json/, loader: 'style-loader'},
+            { test: /\.json$/, loader: 'raw-loader' },
             { test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery' },
 
             { test: /\.png$/, loader: "url-loader?mimetype=image/png" },
