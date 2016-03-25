@@ -81,7 +81,7 @@ var InteractiveMap = React.createClass({
       }
       navigation.push( <a onClick={this.incrementPosition.bind(null, this.props.map_id, 1)} key={captionsLength + 2}><img src="./src/bg/arrow_incr.svg"/></a> );
       this.setState({
-        navigation: [<div className="map-nav">{navigation}</div>]
+        navigation: [<div className="map-nav" key={this.props.map_id + "nav"}>{navigation}</div>]
       });
     }
   },

@@ -1,4 +1,4 @@
-.map-body { margin-left: auto; margin-right: auto; overflow-x: hidden;}
+.map-body { margin-left: auto; margin-right: auto; margin-bottom:20px; overflow-x: hidden;}
 .map-nav { border-bottom: 2px solid #333; display: inline-block; height:9px; margin: 10px auto 25px auto; }
 .map-nav img { vertical-align:top;}
 .map-nav a:first-child { margin-left:-5px; margin-right:10px;}

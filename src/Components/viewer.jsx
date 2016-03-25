@@ -10,7 +10,7 @@ var ViewMaster = React.createClass({
            <h3 className="map-title center">{this.props.title}
              <a onClick={this.props.closeMedia}><img src="./src/bg/x.svg"/></a>
            </h3>
-
+           <p><em>{this.props.caption}</em></p>
          </div>
          {this.props.content}
        </div>
