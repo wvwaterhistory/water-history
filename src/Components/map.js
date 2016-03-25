@@ -30,7 +30,7 @@ var MapCaptions = React.createClass({
   },
   render: function () {
     return (
-      <div className="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-11 col-md-offset-1">
         <h3 className="map-title">{this.props.captions[this.props.position][0]}</h3>
         {this.props.navigation}
         <p><em>{this.props.captions[this.props.position][1]}</em></p>
@@ -162,7 +162,7 @@ var InteractiveMap = React.createClass({
       ],
       captions: [
         [
-          'Looking closer at the impact area',
+          'Who was Impacted Most?',
           'Some populations in the impact area were affected more severely than others. Click through to learn more.',
         ],
         [

@@ -28,7 +28,7 @@ var ExpansionSection = React.createClass({
                   <footer>Chris Jarrett, President of WV American Water Company</footer>
                 </blockquote>
                 <div className="row center top-space">
-                  <img src="img/WVAW-logo.png" width="60px"/>
+                  <img src="./src/img/WVAW-logo.png" width="60px"/>
                 </div>
               </div>
             </div>

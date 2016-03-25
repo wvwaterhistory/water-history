@@ -6,10 +6,13 @@ var ViewMaster = React.createClass({
      <section className="view-master" className={this.props.visible ? "" : "hide"}>
        <div id="blanket"></div>
        <div className="popup paper-bg">
-         <h3 className="map-title center">{this.props.title}</h3>
-         {this.props.content}
+         <div className="popup-header">
+           <h3 className="map-title center">{this.props.title}
+             <a onClick={this.props.closeMedia}><img src="./src/bg/x.svg"/></a>
+           </h3>
 
-         <a onClick={this.props.closeMedia}>close</a>
+         </div>
+         {this.props.content}
        </div>
      </section>
    );
