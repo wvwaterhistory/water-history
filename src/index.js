@@ -11,6 +11,7 @@ import App from './Components/app.jsx';
 var media = require("./json/media.json");
 var maps = require("./json/maps.json");
 
+
 ReactDOM.render(<App media={JSON.parse(media)} maps={JSON.parse(maps)}/>, document.getElementById('myApp'));
 
 $('.circle').on('click', function(){

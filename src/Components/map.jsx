@@ -16,15 +16,18 @@ var InteractiveMap = React.createClass({
   },
   render: function () {
     return (
-      <div className="row paper-bg" id={this.props.map_id + "Map"}>
-        <h2 className="map-title center">{this.props.map.title}</h2>
-        <div className="col-md-4 center map-captions">
-          <div className="spacer2 hidden-sm hidden-xs"></div>
-          <hr className="hidden-xs hidden-sm col-md-12" />
+      <div className="container-fluid paper-bg" id={this.props.map_id + "Map"}>
+        <div className="col-xs-12 center">
+          <h2 className="map-title">{this.props.map.title}</h2>
+          <img src={"./src/maps/" + this.props.map_id + ".gif"} width="90%" className="visible-xs" />
+        </div>
+        <div className="col-md-4 center map-captions hidden-xs">
+          <div className="spacer2 hidden-sm"></div>
+          <hr className="hidden-sm col-md-12" />
             <MapCaptions position={this.state.position} captions={this.props.map.captions} navigation={this.state.navigation} newPosition={this.changePosition} />
           <hr className="hidden-xs hidden-sm col-md-12" />
         </div>
-        <div className="col-md-8">
+        <div className="col-md-8 hidden-xs map-body">
           <MapBody bg={this.props.map.bg} bgHeight={this.props.map.bgHeight} overlay={this.props.map.overlays[this.state.position]} position={this.state.position} />
         </div>
       </div>

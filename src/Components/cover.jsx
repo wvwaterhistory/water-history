@@ -4,8 +4,8 @@ module.exports = function() {
   return (
   <div className="container-fluid charcoal-bg">
     <div className="row cover center">
-      <div className="col-lg-2 col-lg-offset-10 col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-9 col-xs-4 col-xs-offset-8 center paper-bg">
-        <a href="resources.html"><h4>RESOURCES</h4></a>
+      <div className="col-lg-2 col-lg-offset-10 col-md-3 col-md-offset-9 col-sm-4 col-sm-offset-8 col-xs-6 col-xs-offset-6 center paper-bg">
+        <a className="resources-link" href="resources.html"><h4>RESOURCES</h4></a>
       </div>
       <h1 className="title">West Virginia's Water Crisis</h1>
       <h2 className="title">The Story of WV American Water</h2>

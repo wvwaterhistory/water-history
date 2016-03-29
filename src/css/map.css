@@ -3,7 +3,7 @@
 .map-nav img { vertical-align:top;}
 .map-nav a:first-child { margin-left:-5px; margin-right:10px;}
 .map-nav a:last-child { margin-left:10px; margin-right:-3px;}
-.map-captions { overflow-x: hidden; }
+.map-captions { overflow-x: hidden; padding:0; }
 .map-captions hr { border-top: 2px solid #333; margin:20px; }
 .map-captions .map-title { margin-top: 0;}
 .circle {

@@ -6,8 +6,11 @@ var EarlyYearsSection = React.createClass({
     return (
       <div className="container-fluid" id="earlyyears">
         <div className="row paper-bg center">
-          <h2 className="map-title">The Original Water Companies</h2>
-          <img src="./src/maps/origins_map.png" />
+          <div className="col-xs-12">
+            <h2 className="map-title">The Original Water Companies</h2>
+            <img className="hidden-lg hidden-md" width="70%" src="./src/maps/origins_map-sm.png" />
+            <img className="hidden-xs hidden-sm" src="./src/maps/origins_map.png" />
+          </div>
         </div>
         <div className="row transition-image early-years-bg center">
             <h1>Early Years</h1>

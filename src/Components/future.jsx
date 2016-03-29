@@ -6,7 +6,10 @@ var FutureSection = React.createClass({
     return (
       <div className="container-fluid" id="future">
         <div className="row paper-bg center">
-          <img src="./src/maps/hazards_map.png"/>
+          <div className="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+            <h2 className="map-title">Is this likely to happen again?</h2>
+            <img width="100%" src="./src/maps/hazards_map.png" />
+          </div>
         </div>
         <div className="row transition-image future-bg center">
             <h1>Future</h1>

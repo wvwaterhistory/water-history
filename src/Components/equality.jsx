@@ -42,7 +42,12 @@ var EqualitySection = React.createClass({
               </div>
             </div>
             <div className="col-sm-4 top-space">
-              <MediaLink onClick={this.props.showMedia.bind(null, "document", 0)} mediaTitle="The Water Crisis in Jail" icon="letter" />
+              <div className="center">
+                <div className="media-link" style={{backgroundImage: 'url(./src/img/letter_circle.png)'}} >
+                  <a href="http://storiesfromsouthcentralwv.com" target="_blank"><img src="./src/img/plus-sign.png"/></a>
+                </div>
+                <h4 className="map-title">The Water Crisis in the Jail</h4>
+              </div>
             </div>
             <div className="col-sm-8">
               <blockquote className="bq-header top-space">
