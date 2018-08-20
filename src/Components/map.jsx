@@ -2,19 +2,45 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import $ from 'jquery';
 
-var InteractiveMap = React.createClass({
-  getInitialState: function () {
-    return {
+
+class InteractiveMap extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       position: 0,
       navigation: []
+    };
+  }
+  componentDidMount() {
+    var navigation = [],
+        captionsLength = this.props.map.captions.length;
+    if(captionsLength > 1){
+      navigation.push( <a onClick={this.incrementPosition.bind(null, this.props.map_id, -1)} key={captionsLength + 1}><img src="./src/bg/arrow_decr.svg"/></a> );
+      for (var i = 0; i < captionsLength; i++){
+        navigation.push(
+          <a className={i === 0 ? "circle filled" : "circle"} key={i} onClick={this.changePosition.bind(null, i)}></a>
+        );
+      }
+      navigation.push( <a onClick={this.incrementPosition.bind(null, this.props.map_id, 1)} key={captionsLength + 2}><img src="./src/bg/arrow_incr.svg"/></a> );
+      this.setState({
+        navigation: [<div className="map-nav" key={this.props.map_id + "nav"}>{navigation}</div>]
+      });
     }
-  },
-  changePosition: function (i) {
+  }
+  changePosition(i) {
     this.setState({
       position: i
     });
-  },
-  render: function () {
+  }
+  incrementPosition (map_id, n) {
+    var newPosition = this.state.position + n,
+        activeLink = newPosition + 2;
+    if (n > 0 && newPosition < this.props.map.captions.length || n < 0 && newPosition >= 0) {
+      $('#' + map_id + 'Map .map-nav a.circle:nth-child(' + activeLink +')').click();
+      this.changePosition(newPosition);
+    }
+  }
+  render() {
     return (
       <div className="container-fluid paper-bg" id={this.props.map_id + "Map"}>
         <div className="col-xs-12 center">
@@ -32,59 +58,35 @@ var InteractiveMap = React.createClass({
         </div>
       </div>
     );
-  },
-  componentDidMount: function () {
-    var navigation = [],
-        captionsLength = this.props.map.captions.length;
-    if(captionsLength > 1){
-      navigation.push( <a onClick={this.incrementPosition.bind(null, this.props.map_id, -1)} key={captionsLength + 1}><img src="./src/bg/arrow_decr.svg"/></a> );
-      for (var i = 0; i < captionsLength; i++){
-        navigation.push(
-          <a className={i === 0 ? "circle filled" : "circle"} key={i} onClick={this.changePosition.bind(null, i)}></a>
-        );
-      }
-      navigation.push( <a onClick={this.incrementPosition.bind(null, this.props.map_id, 1)} key={captionsLength + 2}><img src="./src/bg/arrow_incr.svg"/></a> );
-      this.setState({
-        navigation: [<div className="map-nav" key={this.props.map_id + "nav"}>{navigation}</div>]
-      });
-    }
-  },
-  incrementPosition: function (map_id, n) {
-    var newPosition = this.state.position + n,
-        activeLink = newPosition + 2;
-    if (n > 0 && newPosition < this.props.map.captions.length || n < 0 && newPosition >= 0) {
-      $('#' + map_id + 'Map .map-nav a.circle:nth-child(' + activeLink +')').click();
-      this.changePosition(newPosition);
-    }
   }
-});
-var MapBody = React.createClass({
-  render: function () {
-    var mapStyle = {
-      width: '735px',
-      height: this.props.bgHeight + 'px',
-      background: 'url(' + this.props.bg + ') no-repeat'
-    };
-    var overlayStyle = {
-      position: 'relative',
-      left: this.props.overlay[1],
-      top: this.props.overlay[2]
-    }
-    return (
-      <div style={mapStyle} className="map-body">
-        <img src={this.props.overlay[0]} style={overlayStyle} />
-      </div>
-    );
-  }
-});
+}
 
-var MapCaptions = React.createClass({
-  getInitialState: function () {
-    return {
+export const MapBody = ({ bg, bgHeight, overlay }) => {
+  var mapStyle = {
+    width: '735px',
+    height: bgHeight + 'px',
+    background: 'url(' + bg + ') no-repeat'
+  };
+  var overlayStyle = {
+    position: 'relative',
+    left: overlay[1],
+    top: overlay[2]
+  };
+  return (
+    <div style={mapStyle} className="map-body">
+      <img src={overlay[0]} style={overlayStyle} />
+    </div>
+  );
+};
+
+export class MapCaptions extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       newPosition: ''
-    }
-  },
-  render: function () {
+    };
+  }
+  render() {
     return (
       <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-11 col-md-offset-1">
         <h3 className="map-title">{this.props.captions[this.props.position][0]}</h3>
@@ -93,6 +95,6 @@ var MapCaptions = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default InteractiveMap;

@@ -4,7 +4,7 @@
   "description": "WVAW History interactive article with ReactJS maps",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,9 @@
     "jquery": "^2.2.1",
     "less": "^2.6.1",
     "less-loader": "^2.2.2",
-    "mustache": "^2.2.1"
+    "mustache": "^2.2.1",
+    "react": "^16.4.2",
+    "styled-components": "^3.4.2"
   },
   "bugs": {
     "url": "https://github.com/wvwaterhistory/water-history/issues"

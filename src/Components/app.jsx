@@ -10,18 +10,20 @@ import FutureSection from './future.jsx';
 import Footer from './footer.jsx';
 import $ from 'jquery';
 
-var App = React.createClass({
-  getInitialState: function () {
-    return {
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       currentMedia: 1,
       mediaViewer: false
     };
-  },
-  showMedia: function (type, id) {
+  }
+  showMedia(type, id) {
     var media = this.props.media[type][id];
     var content = [];
     if (type === "audio") {
-      for (var i=0; i < media.tracks.length; i++) {
+      for (var i = 0; i < media.tracks.length; i++) {
         content.push(
           <iframe width="100%" height="126" scrolling="no" frameBorder="no" src={"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/" + media.tracks[i] + "&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"} ></iframe>
         )
@@ -38,23 +40,31 @@ var App = React.createClass({
       mediaCaption: media.caption,
       mediaContent: content,
       mediaViewer: true
-
     });
-  },
-  closeMedia: function () {
+  }
+  closeMedia() {
     this.setState({
-      mediaTitle: "",
-      mediaCaption: "",
+      mediaTitle: '',
+      mediaCaption: '',
       mediaContent: [],
       mediaViewer: false
     });
-  },
-  render: function () {
+  }
+  render() {
     return (
       <div>
-        <ViewMaster title={this.state.mediaTitle} caption= {this.state.mediaCaption} content={this.state.mediaContent} visible={this.state.mediaViewer} closeMedia={this.closeMedia} />
-        <Cover />
-        <EarlyYearsSection showMedia={this.showMedia}/>
+        <ViewMaster
+            title={this.state.mediaTitle}
+            caption= {this.state.mediaCaption}
+            content={this.state.mediaContent}
+            visible={this.state.mediaViewer}
+            closeMedia={this.closeMedia}
+        />
+        <Cover
+          title="West Virginia's Water Crisis"
+          subtitle="The Story of WV American Water"
+        />
+        <EarlyYearsSection showMedia={this.showMedia} />
         <InteractiveMap map_id="expansion" map={this.props.maps["expansion"]} />
         <ExpansionSection showMedia={this.showMedia}/>
         <InteractiveMap map_id="spills" map={this.props.maps["spills"]} />
@@ -66,6 +76,5 @@ var App = React.createClass({
       </div>
     );
   }
-});
-
+}
 export default App;
