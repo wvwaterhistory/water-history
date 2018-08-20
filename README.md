@@ -1,5 +1,8 @@
-# water-history
+#water-history
 
+Start the app locally
+```
+npm run dev
+```
 
-###Useful React References for
-* [Modular App components](https://toddmotto.com/react-create-class-versus-component/)
+This will run webpack to build the site. Navigate to `file:///Users/AKW/Documents/sites/water-history/index.html` in the browser to view the page.
