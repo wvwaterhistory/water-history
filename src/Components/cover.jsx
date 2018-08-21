@@ -14,10 +14,32 @@ const ResourcesLink = styled.a`
   text-align: center;
   color: #222;
 `;
+const positions = {
+  desktop: {
+    initial: {
+      titles: 0,
+      subtitles: 0,
+      h3: '300px',
+      p: '470px'
+    },
+    change: {
+      titles: '280px',
+      subtitles: '290px',
+      h3: '100px',
+      p: '460px'
+    }
+  },
+  mobile: {
+    initial: {
+      h3: '210px',
+      p: '410px'
+    }
+  }
+};
 const Container = styled.div`
   border: 1px solid #333;
   background: #333;
-  height: ${({ scrollComplete }) => scrollComplete ? '500px' : '897px'};
+  height: 897px;
   position: relative;
   img {
     opacity: 0;
@@ -26,10 +48,14 @@ const Container = styled.div`
     top: 0;
   }
   .titles, .subtitles {
+    top: ${positions.desktop.titles};
     position: absolute;
-    transition: margin-top .5s;
+    transition: margin-top .5s, color .5s;
     width: 100%;
     z-index: 5;
+  }
+  .subtitles {
+    z-index: 3;
   }
   h1, h2 {
     margin-top: 10px;
@@ -39,19 +65,38 @@ const Container = styled.div`
   }
   h3 {
     position: absolute;
-    top: 300px;
+    top: ${positions.desktop.initial.h3};
+    transiton: opacity 1s;
   }
   p {
     position: absolute;
-    top: 470px;
+    top: ${positions.desktop.initial.p};
+    font-size: 1.2em;
+    line-height: 1.2em;
+  }
+  @media (max-width: 750px){
+    h1.title {
+      margin-top: 100px;
+    }
+    h2.title {
+      line-height: 0.9em;
+    }
+    h3 {
+      top: ${positions.mobile.initial.h3};
+      color: #dcd28a;
+      opacity: 0;
+      font-size: 1.4em;
+    }
+    p {
+      top: ${positions.mobile.initial.p};
+      font-size: 1.1em;
+      line-height: 1.1em;
+    }
   }
 `;
 class Cover extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      scrollComplete: false
-    };
   }
   _parallax(ev) {
     const pos = $(window).scrollTop();
@@ -61,12 +106,14 @@ class Cover extends React.Component {
       $('#cover-container img').css('opacity', .1);
     }
     if (pos > 50) {
-      $('.titles').css('margin-top', '200px');
-      $('.subtitles').css('margin-top', '290px');
-      $('.subtitles h3').css('margin-top', '100px');
+      $('.titles').css('margin-top', positions.desktop.change.titles);
+      $('.subtitles').css('margin-top', positions.desktop.change.subtitles);
+      $('.subtitles').css('color', '#1a1a1a');
+      $('.subtitles h3').css('margin-top', positions.desktop.change.h3);
+      $('.subtitles h3').css('opacity', 1);
     } else {
-      $('.titles').css('margin-top', '0');
-      $('.subtitles').css('margin-top', '0');
+      $('.titles').css('margin-top', positions.desktop.initial.titles);
+      $('.subtitles').css('margin-top', positions.desktop.initial.subtitles);
     }
   }
   componentDidMount() {
@@ -74,7 +121,6 @@ class Cover extends React.Component {
   }
   render () {
     const { title, subtitle } = this.props;
-    const { scrollComplete } = this.state;
     return (
       <div>
         <ResourcesLink href="resources.html">Resources</ResourcesLink>

@@ -3,13 +3,6 @@ import MediaLink from './mediaLink.jsx';
 
 const EarlyYearsSection = (props) => (
   <div className="container-fluid" id="earlyyears">
-    <div className="row paper-bg center">
-      <div className="col-xs-12">
-        <h2 className="map-title">The Original Water Companies</h2>
-        <img className="hidden-lg hidden-md" width="70%" src="./src/maps/origins_map-sm.png" />
-        <img className="hidden-xs hidden-sm" src="./src/maps/origins_map.png" />
-      </div>
-    </div>
     <div className="row transition-image early-years-bg center">
         <h1>Early Years</h1>
     </div>
@@ -17,6 +10,14 @@ const EarlyYearsSection = (props) => (
       <div className="col-sm-10 col-sm-offset-1">
         <div className="spacer"></div>
         <h4>West Virginia American Water is a water utility. In the Charleston, WV, area, it provides water to people in 9 counties, often using public funds to expand its system. During the water crisis, many were surprised to learn that there were 300,000 people on a single drinking water intake.  How did we get to this point in history?</h4>
+        <div className="spacer"></div>
+        <div className="row paper-bg center">
+          <div className="col-xs-12 col-md-8 col-md-offset-2" style={{ overflow: 'auto', paddingBottom: '20px' }}>
+            <h2 className="map-title">The Original Water Companies</h2>
+            <img className="hidden-lg hidden-md" width="70%" src="./src/maps/origins_map-sm.png" />
+            <img className="hidden-xs hidden-sm" style={{ maxWidth: '100%' }} src="./src/maps/origins_map.png" />
+          </div>
+        </div>
         <div className="spacer"></div>
         <div className="row">
           <div className="col-sm-4">

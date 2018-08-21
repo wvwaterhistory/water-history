@@ -16,8 +16,8 @@ const Footer = () => (
                   <span className="small">Author &amp; Researcher</span></p>
             </div>
             <div className="row">
-              <img src="./src/img/alicia_circle.png" width="55px"/>
-              <p><strong>Alicia Willett</strong><br/>
+              <img src="./src/img/alicia_circle.png" width="55px" />
+              <p><a href="http://aliciakw.github.io" target="_blank"><strong>Alicia Willett</strong></a><br/>
                 <span className="small">Web Development &amp; Graphics</span></p>
             </div>
           </div>
