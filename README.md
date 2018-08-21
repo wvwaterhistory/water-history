@@ -1,4 +1,4 @@
-#water-history
+# water-history
 
 Start the app locally
 ```
