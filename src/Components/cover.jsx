@@ -2,7 +2,17 @@ var React = require('react');
 import styled from 'styled-components';
 import $ from 'jquery';
 
-const Wrapper = styled.div`
+const ResourcesLink = styled.a`
+  position: absolute;
+  z-index: 6;
+  text-transform: uppercase;
+  background: #fff;
+  right: 0;
+  top: 0;
+  padding: 5px;
+  width: 125px;
+  text-align: center;
+  color: #222;
 `;
 const Container = styled.div`
   border: 1px solid #333;
@@ -12,7 +22,7 @@ const Container = styled.div`
   img {
     opacity: 0;
     position: absolute;
-    transition: opacity 1s; 
+    transition: opacity 1s;
     top: 0;
   }
   .titles, .subtitles {
@@ -66,8 +76,9 @@ class Cover extends React.Component {
     const { title, subtitle } = this.props;
     const { scrollComplete } = this.state;
     return (
-      <Wrapper>
-        <Container id="cover-container" scrollComplete={scrollComplete}>
+      <div>
+        <ResourcesLink href="resources.html">Resources</ResourcesLink>
+        <Container id="cover-container">
           <div className="titles">
             <h1 className="title">{title}</h1>
             <h2 className="title">{subtitle}</h2>
@@ -81,7 +92,7 @@ class Cover extends React.Component {
           </div>
           <div className="spacer"></div>
         </Container>
-      </Wrapper>
+      </div>
     );
   }
 }

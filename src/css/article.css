@@ -20,8 +20,8 @@ p.info { font-size:10px; margin-bottom:10px; color:#222; }
 
 figcaption { margin-top:10px;font-size: 12px; }
 
-a.resources-link { color: #C17652; }
-a.resources-link:hover, a.resources-link:focus, a.resources-link:active { color:#926258; text-decoration:none;}
+a.resources-link { color: #222; left: 0; position: absolute; padding: 5px; background: #fff; text-transform: uppercase; width: 125px; text-align: center; }
+.resources { padding-top: 40px; }
 .resources a {color:#E6BCA2;}
 .resources a:hover, .resources a:focus, .resources a:active { color:#C17652; text-decoration:none; }
 .outline-link { color:#ccc; }

@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import ViewMaster from './viewer.jsx';
 import InteractiveMap from './map.jsx';
 import Cover from './cover.jsx';
@@ -10,6 +12,11 @@ import FutureSection from './future.jsx';
 import Footer from './footer.jsx';
 import $ from 'jquery';
 
+
+const Wrapper = styled.div`
+  width: 100%;
+  overflow-x: hidden;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -52,7 +59,7 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <Wrapper>
         <ViewMaster
             title={this.state.mediaTitle}
             caption= {this.state.mediaCaption}
@@ -73,7 +80,7 @@ class App extends React.Component {
         <EqualitySection showMedia={this.showMedia}/>
         <FutureSection showMedia={this.showMedia}/>
         <Footer />
-      </div>
+      </Wrapper>
     );
   }
 }
