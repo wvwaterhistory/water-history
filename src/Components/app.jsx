@@ -25,6 +25,8 @@ class App extends React.Component {
       currentMedia: 1,
       mediaViewer: false
     };
+    this.showMedia = this.showMedia.bind(this);
+    this.closeMedia = this.closeMedia.bind(this);
   }
   showMedia(type, id) {
     var media = this.props.media[type][id];

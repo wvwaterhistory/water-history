@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import styled from 'styled-components';
 import $ from 'jquery';
 
 
@@ -10,6 +10,8 @@ class InteractiveMap extends React.Component {
       position: 0,
       navigation: []
     };
+    this.changePosition = this.changePosition.bind(this);
+    this.incrementPosition = this.incrementPosition.bind(this);
   }
   componentDidMount() {
     var navigation = [],
@@ -41,20 +43,22 @@ class InteractiveMap extends React.Component {
     }
   }
   render() {
+    const { map_id, map } = this.props;
+    const { navigation, position } = this.state;
     return (
-      <div className="container-fluid paper-bg" id={this.props.map_id + "Map"}>
+      <div className="container-fluid paper-bg" id={map_id + "Map"}>
         <div className="col-xs-12 center">
-          <h2 className="map-title">{this.props.map.title}</h2>
-          <img src={"./src/maps/" + this.props.map_id + ".gif"} width="90%" className="visible-xs" />
+          <h2 className="map-title">{map.title}</h2>
+          <img src={"./src/maps/" + map_id + ".gif"} width="90%" className="visible-xs" />
         </div>
         <div className="col-md-4 center map-captions hidden-xs">
           <div className="spacer2 hidden-sm"></div>
           <hr className="hidden-sm col-md-12" />
-            <MapCaptions position={this.state.position} captions={this.props.map.captions} navigation={this.state.navigation} newPosition={this.changePosition} />
+            <MapCaptions position={position} captions={map.captions} navigation={navigation} newPosition={this.changePosition} />
           <hr className="hidden-xs hidden-sm col-md-12" />
         </div>
         <div className="col-md-8 hidden-xs map-body">
-          <MapBody bg={this.props.map.bg} bgHeight={this.props.map.bgHeight} overlay={this.props.map.overlays[this.state.position]} position={this.state.position} />
+          <MapBody bg={map.bg} bgHeight={map.bgHeight} overlay={map.overlays[position]} position={position} />
         </div>
       </div>
     );
@@ -87,11 +91,12 @@ export class MapCaptions extends React.Component {
     };
   }
   render() {
+    const { captions, position, navigation } = this.props;
     return (
       <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-11 col-md-offset-1">
-        <h3 className="map-title">{this.props.captions[this.props.position][0]}</h3>
-        {this.props.navigation}
-        <p><em>{this.props.captions[this.props.position][1]}</em></p>
+        <h3 className="map-title">{captions[position][0]}</h3>
+        {navigation}
+        <p><em>{captions[position][1]}</em></p>
       </div>
     );
   }
