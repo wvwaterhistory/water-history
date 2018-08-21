@@ -1,0 +1,8 @@
+.center { text-align:center; }
+.left { text-align:left; }
+.right { text-align:right; }
+
+.top-space { margin-top:20px; }
+.bottom-space { margin-bottom:20px; }
+.spacer { height:40px; }
+.spacer2 { height: 80px;}
